@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: grace-hello-mcp
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /
+    autoDeploy: true
+    # RENDER_EXTERNAL_URL is injected by Render automatically and is used by
+    # server.js to build the absolute https:// icon URL. No manual env needed.
