@@ -1,3 +1,4 @@
+import path from "node:path";
 import express from "express";
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
@@ -89,10 +90,18 @@ app.use(express.json());
 // Serve the icon (and anything else in /static) at the site root.
 app.use(express.static("static"));
 
+// Some clients (e.g. Claude Desktop's connector list) appear to derive a
+// connector's icon from the site's favicon rather than the MCP `icons` field.
+// So we also expose our icon as /favicon.ico to try to get branded there.
+app.get("/favicon.ico", (_req, res) =>
+  res.type("image/png").sendFile(path.resolve("static/icon.png"))
+);
+
 // A tiny human-friendly landing/health page so you can eyeball the icon.
 app.get("/", (_req, res) => {
   res.type("html").send(`<!doctype html>
 <meta charset="utf-8">
+<link rel="icon" type="image/png" href="/icon.png">
 <title>GRACE Hello MCP</title>
 <body style="font-family:system-ui;max-width:640px;margin:60px auto;color:#0f2027">
   <img src="/icon.png" width="96" height="96" alt="icon" style="border-radius:20px">
