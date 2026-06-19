@@ -1,0 +1,25 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.rajitharul/grace-hello-mcp",
+  "title": "GRACE Hello MCP",
+  "description": "A very simple remote MCP server that greets you, with a custom icon.",
+  "version": "1.0.0",
+  "repository": {
+    "url": "https://github.com/rajitharul/grace-hello-mcp",
+    "source": "github"
+  },
+  "websiteUrl": "https://grace-hello-mcp.onrender.com",
+  "icons": [
+    {
+      "src": "https://grace-hello-mcp.onrender.com/icon.png",
+      "mimeType": "image/png",
+      "sizes": ["512x512"]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://grace-hello-mcp.onrender.com/mcp"
+    }
+  ]
+}
